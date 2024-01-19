@@ -1,0 +1,1 @@
+export { useWatchRouterPath } from './useWatchRouterPath';
