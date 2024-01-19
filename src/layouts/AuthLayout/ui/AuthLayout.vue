@@ -33,6 +33,9 @@ const { breadcrumb } = useLayoutProvider();
 }
 
 .hide {
-    display: none;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0.01;
 }
 </style>

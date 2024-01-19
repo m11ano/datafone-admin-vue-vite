@@ -1,13 +1,13 @@
 import { watch } from 'vue';
-import { useRouter } from 'vue-router';
+import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router';
 
-export const useWatchRouterPath = (handler: () => void) => {
+export const useWatchRouterPath = (handler: (route: RouteLocationNormalizedLoaded, oldRoute?: RouteLocationNormalizedLoaded) => void) => {
     const router = useRouter();
 
     watch(
         router.currentRoute,
-        () => {
-            handler();
+        (value, oldValue) => {
+            handler(value, oldValue);
         },
         { immediate: true },
     );

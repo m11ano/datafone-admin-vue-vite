@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import FullPageLoader from '@/shared/ui/FullPageLoader/FullPageLoader.vue';
+
 const props = defineProps<{
     routerLoading: boolean;
 }>();

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import classNames from 'classNames';
-
+import { ref } from 'vue';
 import { useLayoutProvider } from '@/shared/lib/injectHooks';
 import { useWatchRouterPath } from '@/shared/lib/hooks/useWatchRouterPath';
 
@@ -8,18 +8,23 @@ defineProps<{
     className?: string;
 }>();
 
-const { setExtraBreadcrumb, setDataLoading } = useLayoutProvider();
+const { setDataLoading, setReplacementBreadcrumb } = useLayoutProvider();
 
-const setBreadcrumb = () => {
+const breadcrumb = ref<string>('');
+
+const loadData = async () => {
     setDataLoading(true);
     setTimeout(() => {
-        setExtraBreadcrumb([{ title: 'TEST' }]);
+        breadcrumb.value = 'TEST';
         setDataLoading(false);
     }, 1000);
 };
 
-useWatchRouterPath(() => {
-    setBreadcrumb();
+useWatchRouterPath(async (route, oldRoute) => {
+    if (!oldRoute || route.params.id !== oldRoute.params.id) {
+        await loadData();
+    }
+    setReplacementBreadcrumb([{ title: breadcrumb.value }]);
 });
 </script>
 
