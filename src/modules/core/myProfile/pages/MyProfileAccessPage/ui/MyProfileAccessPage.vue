@@ -12,13 +12,15 @@ const { setDataLoading, setReplacementBreadcrumb } = useLayoutProvider();
 
 const breadcrumb = ref<string>('');
 
-const loadData = async () => {
-    setDataLoading(true);
-    setTimeout(() => {
-        breadcrumb.value = 'TEST';
-        setDataLoading(false);
-    }, 1000);
-};
+const loadData = (): Promise<void> =>
+    new Promise((resolve) => {
+        setDataLoading(true);
+        setTimeout(() => {
+            breadcrumb.value = 'TEST';
+            setDataLoading(false);
+            resolve();
+        }, 1000);
+    });
 
 useWatchRouterPath(async (route, oldRoute) => {
     if (!oldRoute || route.params.id !== oldRoute.params.id) {
