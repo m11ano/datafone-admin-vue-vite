@@ -26,7 +26,7 @@ useWatchRouterPath(async (route, oldRoute) => {
     if (!oldRoute || route.params.id !== oldRoute.params.id) {
         await loadData();
     }
-    setReplacementBreadcrumb([{ title: breadcrumb.value }]);
+    // setReplacementBreadcrumb([{ title: breadcrumb.value }]);
 });
 </script>
 
