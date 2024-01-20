@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watch, provide, defineProps } from 'vue';
+import { watch, provide } from 'vue';
 import { useRouter } from 'vue-router';
 import { NotAuthLayout } from '@/layouts/NotAuthLayout';
 import { AuthLayout } from '@/layouts/AuthLayout';

@@ -15,15 +15,20 @@ const { breadcrumb } = useLayoutProvider();
 <template>
     <div class="authLayout">
         <AuthLayoutHeader />
-        <template v-if="props.routerLoading || props.dataLoading"
-            ><div :class="$style.loaderWrapper"><Loader position="center" /></div
-        ></template>
-        <template v-if="!props.routerLoading">
-            <div :class="classNames(props.dataLoading ? $style.hide : false)">
-                {{ breadcrumb }}!
-                <slot></slot>
-            </div>
-        </template>
+        <div
+            v-if="props.routerLoading || props.dataLoading"
+            :class="$style.loaderWrapper"
+        >
+            <Loader position="center" />
+        </div>
+
+        <div
+            v-if="!props.routerLoading"
+            :class="classNames(props.dataLoading ? $style.hide : false)"
+        >
+            {{ breadcrumb }}!
+            <slot></slot>
+        </div>
     </div>
 </template>
 
